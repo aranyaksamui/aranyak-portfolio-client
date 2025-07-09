@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "JetBrains Mono", monospace;
+    font-optical-sizing: auto;
+    background-color: #0a0a0a;
+}
+
+.blog {
+    font-family: "Lexend Deca", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.blog-text {
+    font-family: "Domine", serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+}
+
+.code-text {
+    font-family: monospace;
+}
