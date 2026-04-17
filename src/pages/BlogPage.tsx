@@ -59,8 +59,6 @@ function BlogPage() {
         );
     }
 
-    // console.log(blog);
-
     return (
         <section className="bg-[#0a0a0a] sm:px-3">
             {blog ? (

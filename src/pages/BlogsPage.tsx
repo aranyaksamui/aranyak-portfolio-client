@@ -6,6 +6,10 @@ import PageTitle from "../components/PageTitle";
 function BlogsPage() {
     const { blogs, meta, loading, error } = useBlogs();
 
+    let myBlogs: typeof blogs;
+    if (blogs) myBlogs = blogs;
+    else myBlogs = [];
+
     if (loading) {
         return (
             <div className="flex justify-center items-center h-64">
@@ -28,13 +32,13 @@ function BlogsPage() {
             <br />
             <br />
             <div>
-                {blogs.length === 0 ? (
+                {myBlogs.length === 0 ? (
                     <div className="text-center py-12">
                         <p className="text-gray-500 text-xl">No blogs found</p>
                     </div>
                 ) : (
                     <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                        {blogs.map((blog) => (
+                        {myBlogs.map((blog) => (
                             <BlogCard key={blog.documentId} {...blog} />
                         ))}
                     </div>

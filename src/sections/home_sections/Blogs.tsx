@@ -6,9 +6,10 @@ function Blogs() {
     const { blogs, meta, loading, error } = useBlogs();
 
     // Show upto 3 blogs in homepage
-    let homePageBlogs;
-    if (blogs.length >= 3) homePageBlogs = blogs.slice(0, 3); // If total blogs is >= 3
-    else homePageBlogs = blogs.slice(0, blogs.length); // If total blogs is < 3
+    let homePageBlogs: typeof blogs;
+    if (blogs)
+        homePageBlogs = blogs.slice(0, 3);
+    else homePageBlogs = [];
 
     if (loading) {
         return (

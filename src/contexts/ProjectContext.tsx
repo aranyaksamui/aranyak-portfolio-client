@@ -32,10 +32,9 @@ export const ProjectProvider: React.FC<{ children: React.ReactNode }> = ({ child
                     "populate[skills][fields][0]": "Name", // Get only skill names
                 };
                 const response = await api.get<StrapiResponse<Project[]>>(`/api/projects`, { params });
-                console.log(response);
                 dispatch({ type: "FETCH_PROJECT_SUCCESS", payload: response.data.data, meta: response.data.meta });
             } catch (err) {
-                const errorMessage = err instanceof Error ? err.message : "Failed to fetch project posts";
+                const errorMessage = err instanceof Error ? err.message : "Failed to fetch projects";
                 dispatch({ type: "FETCH_PROJECT_ERROR", payload: errorMessage });
             }
         };

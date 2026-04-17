@@ -90,7 +90,6 @@ function SkillPage() {
                 };
                 const response = await api.get<StrapiResponse<Blog[]>>(`/api/blogs/`, { params });
                 if (response.data) {
-                    // console.log(response.data);
                     setBlogsOfSkill(response.data.data);
                     setBlogsOfSkillMeta(response.data.meta ?? null);
                 } else setError("Failed to fetch project");
@@ -127,8 +126,6 @@ function SkillPage() {
             </div>
         );
     }
-
-    // console.log(blogsOfSkill);
 
     return (
         <div className="h-[100vh] flex flex-col sm:py-6 sm:px-[2rem] md:px-[5rem] md:py-0 lg:px-[8rem] xl:px-[12rem] 2xl:px-[18rem]">

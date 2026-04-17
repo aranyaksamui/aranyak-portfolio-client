@@ -1,4 +1,4 @@
-import pfp from "../assets/images/pfp.jpg";
+import pfp from "../assets/images/nawg_mascot.png";
 import minimize_icon from "../assets/icons/minimize.svg";
 import maximize_icon from "../assets/icons/maximize.svg";
 import close_icon from "../assets/icons/close.svg";

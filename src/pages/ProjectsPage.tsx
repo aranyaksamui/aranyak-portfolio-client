@@ -5,6 +5,10 @@ import PageTitle from "../components/PageTitle";
 function ProjectsPage() {
     const { projects, meta, loading, error } = useProjects();
 
+    let myProjects: typeof projects;
+    if (projects) myProjects = projects;
+    else myProjects = [];
+
     if (loading) {
         return (
             <div className="flex justify-center items-center h-64">
@@ -27,13 +31,13 @@ function ProjectsPage() {
             <br />
             <br />
             <div className="">
-                {projects.length === 0 ? (
+                {myProjects.length === 0 ? (
                     <div className="text-center py-12">
                         <p className="text-gray-500 text-xl">No projects found</p>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4">
-                        {projects.map((project) => (
+                        {myProjects.map((project) => (
                             <ProjectCard key={project.documentId} {...project} />
                         ))}
                     </div>

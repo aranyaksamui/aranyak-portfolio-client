@@ -21,9 +21,9 @@ function PageTitle(props: { title: string | null; count: number | null; skillIco
                 </span>
                 <span className="text-white sm:text-lg md:text-2xl">{props.count && `#${props.count}`}</span>
             </div>
-            <div className="h-full bg-[#1f1f1f] flex justify-between items-center font-black sm:px-2 md:px-5 2xl:px-8">
+            {/* <div className="h-full bg-[#1f1f1f] flex justify-between items-center font-black sm:px-2 md:px-5 2xl:px-8">
                 <IoSearchSharp size={"30"} color="white" />
-            </div>
+            </div> */}
         </div>
     );
 }

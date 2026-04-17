@@ -5,12 +5,11 @@ import SectionTitle from "../../components/SectionTitle";
 function Project() {
     const { projects, meta, loading, error } = useProjects();
 
-    // console.log(projects);
-
     // Show upto 3 projects in homepage
-    let homePageProjects;
-    if (projects.length >= 3) homePageProjects = projects.slice(0, 3); // If total projects is >= 3
-    else homePageProjects = projects.slice(0, projects.length); // If total projects is < 3
+    let homePageProjects: typeof projects;
+    if (projects)
+        homePageProjects = projects.slice(0, 3);
+    else homePageProjects = [];
 
     if (loading) {
         return (
@@ -23,7 +22,7 @@ function Project() {
     if (error) {
         return (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-md mx-auto mt-8">
-                <p>Error loading projects: {error}</p>
+                <p>Failed to load projects. {error}</p>
             </div>
         );
     }

@@ -7,10 +7,6 @@ import {
     SiBlender,
     SiCplusplus,
     SiUnrealengine,
-    SiAdobepremierepro,
-    SiAdobeaftereffects,
-    SiAdobelightroom,
-    SiAdobeillustrator,
 } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
 import { FaMedal } from "react-icons/fa";
@@ -30,10 +26,10 @@ const skillIconMap: Record<string, IconType> = {
     blender: SiBlender,
     cplusplus: SiCplusplus,
     unrealengine: SiUnrealengine,
-    premierpro: SiAdobepremierepro,
-    aftereffects: SiAdobeaftereffects,
-    lightroom: SiAdobelightroom,
-    illustrator: SiAdobeillustrator,
+    // premierpro: SiAdobepremierepro,
+    // aftereffects: SiAdobeaftereffects,
+    // lightroom: SiAdobelightroom,
+    // illustrator: SiAdobeillustrator,
 };
 
 export const getSkillIcon = (skillName: string): IconType => {

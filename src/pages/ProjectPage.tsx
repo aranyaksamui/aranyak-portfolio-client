@@ -57,8 +57,6 @@ function ProjectPage() {
         );
     }
 
-    // console.log(project);
-
     return (
         <section className="bg-[#0a0a0a] mx-auto">
             {project ? (
