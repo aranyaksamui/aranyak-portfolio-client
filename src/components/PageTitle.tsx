@@ -1,4 +1,4 @@
-import { IoArrowBackSharp, IoSearchSharp } from "react-icons/io5";
+import { IoArrowBackSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { fallbackIcon, getSkillIcon } from "../utils/SkillIcons";
 
