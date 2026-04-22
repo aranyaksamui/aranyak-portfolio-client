@@ -7,6 +7,13 @@ import {
     SiBlender,
     SiCplusplus,
     SiUnrealengine,
+    SiRedis,
+    SiDocker,
+    SiPostman,
+    SiFirebase,
+    SiMysql,
+    SiSupabase,
+
 } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
 import { FaMedal } from "react-icons/fa";
@@ -26,6 +33,12 @@ const skillIconMap: Record<string, IconType> = {
     blender: SiBlender,
     cplusplus: SiCplusplus,
     unrealengine: SiUnrealengine,
+    redis: SiRedis,
+    docker: SiDocker,
+    postman: SiPostman,
+    firebase: SiFirebase,
+    mysql: SiMysql,
+    supabase: SiSupabase,
     // premierpro: SiAdobepremierepro,
     // aftereffects: SiAdobeaftereffects,
     // lightroom: SiAdobelightroom,
