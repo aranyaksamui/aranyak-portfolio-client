@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { SingleProject, SingleProjectResponse } from "../types/project";
 import api from "../api/axios";
 import MarkdownRenderer from "../components/MarkdownRenderer";
@@ -12,7 +11,7 @@ function ProjectPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
-    const coverImage = project?.Media[0]?.url;
+    const coverImage = project?.Media?.[0]?.url || null;
 
     useEffect(() => {
         const fetchSingleProject = async () => {
@@ -41,88 +40,120 @@ function ProjectPage() {
         fetchSingleProject();
     }, [documentId]);
 
+    // Brutalist Loading State (Without font-mono)
     if (loading) {
         return (
-            <div className="flex justify-center items-center h-64">
-                <div className="text-white">loading...</div>
+            <div className="min-h-screen  pt-32">
+                <div className="max-w-4xl w-full mx-auto px-6 md:px-12 text-gray-400 uppercase tracking-widest text-sm">
+                    {">"} loading project_data...
+                </div>
             </div>
         );
     }
 
+    // Brutalist Error State (Without font-mono)
     if (error) {
         return (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-md mx-auto mt-8">
-                <p>Error loading projects: {error}</p>
+            <div className="min-h-screen  pt-32">
+                <div className="max-w-4xl w-full mx-auto px-6 md:px-12">
+                    <div className="border border-red-500 text-red-500 p-4 text-sm uppercase tracking-widest">
+                        {">"} Error: {error}
+                    </div>
+                </div>
             </div>
         );
     }
 
     return (
-        <section className="bg-[#0a0a0a] mx-auto">
+        <section className="min-h-screen text-gray-200 pb-32 pt-24 md:pt-32 flex flex-col">
             {project ? (
-                <div className="container mx-auto px-4 py-48 sm:px-6 md:px-10 lg:px-4 sm:py-16 md:py-20 xl:py-40 max-w-4xl text-white">
-                    <article>
-                        {/* Project Header */}
-                        <header className="mb-8">
-                            <div className="flex items-center text-gray-600 text-sm">
-                                <span>
-                                    {project?.createdAt && new Date(project?.createdAt).toLocaleDateString("en-GB")}
-                                </span>
+                <article className="w-full">
+
+                    {/* 1. THE HEADER (Restricted to max-w-4xl for readability) */}
+                    <div className="max-w-4xl w-full mx-auto px-6 md:px-12">
+                        <header className="mb-10">
+                            <div className="text-xs text-[#fe8e0d] mb-4 tracking-widest uppercase font-light">
+                                {">"} {project.createdAt && new Date(project.createdAt).toLocaleDateString("en-GB")}
                             </div>
-                            <h1 className="lg:text-4xl md:text-4xl lg:py-2 text-white font-black mb-2">
-                                {project?.Title}
+
+                            <h1 className="text-xl md:text-2xl font-black text-white tracking-tighter uppercase mb-6 leading-none">
+                                {project.Title}
                             </h1>
-                            <p className="text-xl text-gray-400 mb-4">{project?.SubTitle}</p>
+
+                            {project.SubTitle && (
+                                <p className="text-lg md:text-lg text-[#808080] font-light leading-relaxed">
+                                    {project.SubTitle}
+                                </p>
+                            )}
                         </header>
-                        {/* Cover Image */}
-                        {project?.Media[0].url && (
-                            <div className="mb-8">
-                                <img src={`${coverImage}`} className="w-full h-auto shadow-md" />
-                            </div>
-                        )}
-                        {/* Project Content */}
-                        <section className="prose prose-lg max-w-none mb-8">
-                            <MarkdownRenderer content={project?.Description} context="project" />
-                        </section>
-                        {/* Gallery
-                            {project?.Media.length > 1 && (
-                                <section className="mb-8">
-                                    <h2 className="text-2xl font-bold mb-4">Gallery</h2>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                                        {project?.Media.slice(1).map((media: Media) => (
-                                            <div key={media.id} className="overflow-hidden rounded-lg">
-                                                <img
-                                                    src={`${apiUrl}${media.url}`}
-                                                    alt={media.alternativeText || `Project image ${media.id}`}
-                                                    className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-                                                />
-                                            </div>
-                                        ))}
+                    </div>
+
+                    {/* 2. THE WIDE IMAGE (Breaks out to max-w-7xl for a cinematic look) */}
+                    <div className="max-w-7xl w-full mx-auto px-6 md:px-12 mb-16 md:mb-24">
+                        {/* We give this container a fixed responsive height to create a "widescreen" banner */}
+                        <div className="relative group w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px]">
+
+                            {/* Orange Offset Shadow */}
+                            <div className="absolute inset-0 border border-[#fe8e0d] translate-x-3 translate-y-3 md:translate-x-4 md:translate-y-4 z-0"></div>
+
+                            <div className="relative z-10 w-full h-full bg-[#fff] p-2 md:p-3">
+                                {coverImage ? (
+                                    <img
+                                        src={`${coverImage}`}
+                                        alt={project.Title}
+                                        // object-cover: Fills the entire wide container without stretching/squishing.
+                                        // object-center: Keeps the middle of the image in focus if it gets cropped.
+                                        className="w-full h-full object-cover object-center grayscale hover:grayscale-0 transition-all duration-500"
+                                    />
+                                ) : (
+                                    <div className="w-full h-full bg-[#111] flex items-center justify-center text-gray-600 uppercase tracking-widest text-sm md:text-base">[ IMAGE_NOT_FOUND ]
                                     </div>
-                                </section>
-                            )} */}
-                        {/* Skills */}
-                        {project?.skills.length > 0 && (
-                            <section className="mb-8">
-                                <h2 className="text-2xl font-bold mb-4">Skills Used</h2>
-                                <div className="grid sm:mt-8 sm:grid-cols-2 sm:gap-3 md:grid-cols-3 lg:w-4/6 lg:mt-0 lg:grid-cols-2 2xl:h-16 text-white">
-                                    {project?.skills.map((skill) => (
-                                        <SkillsInPage {...skill} />
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* 3. THE CONTENT (Restricted back to max-w-4xl so the text doesn't span across your whole monitor) */}
+                    <div className="max-w-4xl w-full mx-auto px-6 md:px-12">
+
+                        <section className="prose prose-invert prose-lg max-w-none mb-16 prose-a:text-orange-500 hover:prose-a:text-orange-400">
+                            <MarkdownRenderer content={project.Description} context="project" />
+                        </section>
+
+                        {/* Skills Used Section */}
+                        {project.skills && project.skills.length > 0 && (
+                            <section className="mono font-normal mb-12">
+                                <h3 className="text-md text-[#646464] mb-3 flex items-center">
+                                    {">"} skillset:
+                                </h3>
+                                {/* Reusing the dense grid from Skills.tsx */}
+                                <div className="flex justify-self-start gap-5">
+                                    {project.skills.map((skill) => (
+                                        // Added key to prevent React console warnings
+                                        <SkillsInPage iconSize={20} key={skill.documentId} {...skill} />
                                     ))}
                                 </div>
                             </section>
                         )}
-                        <Link to={"/projects"} className="w-full mt-5 flex items-center justify-center">
-                            <div className="bg-[#101010] flex items-center justify-center text-[#545454] py-3 px-5">
-                                <MdOutlineKeyboardBackspace className="inline" />
-                                <span className="ml-2">See all projects</span>
-                            </div>
+
+                        {/* Return Button */}
+                        <Link 
+                            to={"/projects"} 
+                            className="group block w-full md:max-w-xs mono text-sm text-[#646464] hover:text-gray-200 hover:border-white transition-all duration-200"
+                        >
+                            {"<"} ALL_PROJECTS
                         </Link>
-                    </article>
-                </div>
-            ) : (
-                <div>Project could not be fetched</div>
-            )}
+
+                        <Link 
+                            to={"/"} 
+                            className="mt-4 group block w-full md:max-w-xs mono text-sm text-[#646464] hover:text-gray-200 hover:border-white transition-all duration-200"
+                        >
+                            {"<"} HOME_PAGE
+                        </Link>
+
+                    </div>
+                </article>
+            ) : null}
         </section>
     );
 }

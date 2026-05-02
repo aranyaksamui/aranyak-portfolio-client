@@ -2,66 +2,74 @@ import { Link } from "react-router-dom";
 import { Project } from "../types/project";
 
 function ProjectCard(props: Project) {
-     const coverImage = props.Media[0]?.url;
+     const coverImage = props.Media ? props.Media[0]?.url : null;
 
     return (
-        <div className="relative group overflow-visible h-full">
-            {" "}
-            {/* Added h-full */}
-            <Link to={`/projects/${props.documentId}`} className="relative z-10 h-full flex flex-col">
-                {" "}
-                {/* Added flex-col */}
-                {/* Orange glow effect container */}
-                <div className="absolute -inset-1 rounded-xl group-hover:rounded-none bg-orange-500 opacity-0 group-hover:opacity-100 scale-95 group-hover:scale-100"></div>
-                {/* Card content - added flex-grow */}
-                <div className="relative bg-transparent overflow-hidden group-hover:rounded-none transform group-hover:-translate-y-2.5 group-hover:translate-x-2.5 group-hover:scale-[1.02] z-20 h-full flex flex-col flex-grow">
-                    {/* Cover image - flex-shrink-0 prevents shrinking */}
-                    <div className="relative overflow-hidden group-hover:rounded-none flex-shrink-0">
-                        <div className="relative pt-[66.66%]">
-                            {coverImage ? (
-                                <img
-                                    src={`${coverImage}`}
-                                    alt={props.Title || "Blog cover"}
-                                    className="absolute inset-0 w-full h-full object-cover"
-                                />
-                            ) : (
-                                <div className="absolute inset-0 bg-gray-800 border-2 border-dashed border-gray-700 rounded-xl flex items-center justify-center text-gray-500">
-                                    No cover image
-                                </div>
-                            )}
-                        </div>
+        <div className="relative group h-full">
+            <Link to={`/projects/${props.documentId}`} className="block w-full h-full relative z-10">
+                
+                {/* 
+                    1. The Brutalist Shadow Block 
+                    This sits behind the card. It's hidden by default, but snaps down and right 
+                    on hover, creating a sharp, solid 3D effect matching your profile picture.
+                */}
+                <div className="absolute inset-0 bg-[#fe8e0d] translate-x-0 translate-y-0 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-200 ease-out z-0 border border-[#fe8e0d]"></div>
+
+                {/* 
+                    2. The Main Card
+                    Sharp borders, dark background. 
+                */}
+                <div className="relative h-full flex flex-col bg-[#1a1a1a] border border-[#404040] group-hover:border-white transition-colors duration-200 z-10">
+                    
+                    {/* Cover Image Container */}
+                    <div className="relative pt-[60%] border-b border-[#404040] overflow-hidden bg-[#111]">
+                        {coverImage ? (
+                            <img
+                                src={`${coverImage}`}
+                                alt={props.Title || "Project cover"}
+                                // Added grayscale that turns to full color on hover!
+                                className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300"
+                            />
+                        ) : (
+                            // Minimalist fallback for missing images instead of a random stock photo
+                            <div className="absolute inset-0 flex items-center justify-center font-mono text-[#404040] text-sm">[ IMAGE_NOT_FOUND ]
+                            </div>
+                        )}
                     </div>
 
-                    {/* Content section - flex-grow fills space */}
-                    <div className="flex flex-col justify-between p-4 space-y-2 bg-white group-hover:bg-white group-hover:rounded-none flex-grow">
+                    {/* Content Section */}
+                    <div className="flex flex-col flex-grow p-5 space-y-3">
                         <div>
-                            {/* Date */}
-                            <h6 className="text-xs text-gray-400 mb-1">
-                                {new Date(props.createdAt).toLocaleDateString("en-GB")}
-                            </h6>
+                            {/* Date (Terminal Style) */}
+                            <div className="font-mono text-xs text-[#808080] mb-2">
+                                {">"} {new Date(props.createdAt).toLocaleDateString("en-GB")}
+                            </div>
 
                             {/* Title */}
-                            <h2 className="font-bold text-xl text-black group-hover:text-orange-400">{props.Title}</h2>
+                            <h2 className="text-md font-bold text-white tracking-tight uppercase group-hover:text-[#fe8e0d] transition-colors">
+                                {props.Title}
+                            </h2>
 
-                            {/* Subtitle - flex-grow on parent allows expansion */}
-                            <p className="text-gray-900 font-light text-sm mt-2 flex-grow">
+                            {/* Subtitle */}
+                            <p className="text-[#afafaf] font-light text-sm mt-2 leading-relaxed flex-grow">
                                 {props.SubTitle?.substring(0, 120)}...
                             </p>
                         </div>
 
-                        {/* Skills and tags - stays at bottom */}
-                        <div className="flex flex-wrap gap-2 pt-2 mt-auto">
+                        {/* Skills / Tags (Wireframe Terminal Style) */}
+                        <div className="flex flex-wrap gap-x-3 gap-y-1 pt-4 mt-auto">
                             {props.skills.map((skill) => (
                                 <span
                                     key={skill.documentId}
-                                    className="px-2 py-1 text-xs font-medium text-white bg-orange-400 rounded-full whitespace-nowrap"
+                                    className="font-mono text-xs text-[#fe8e0d]"
                                 >
-                                    {skill.Name}
+                                    [{skill.Name.toUpperCase()}]
                                 </span>
                             ))}
                         </div>
                     </div>
                 </div>
+                
             </Link>
         </div>
     );

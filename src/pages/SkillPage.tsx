@@ -128,47 +128,51 @@ function SkillPage() {
     }
 
     return (
-        <div className="h-[100vh] flex flex-col sm:py-6 sm:px-[2rem] md:px-[5rem] md:py-0 lg:px-[8rem] xl:px-[12rem] 2xl:px-[18rem]">
-            <PageTitle
-                title={skillName && skillName}
-                count={totalPostsOfSkill ? totalPostsOfSkill : null}
-                skillIconName={skillName}
-            />
-            <br />
-            <br />
-            <div className="mb-5 w-full flex flex-col">
-                <SectionTitle
-                    title="PROJECTS"
-                    count={projectsOfSkillMeta ? projectsOfSkillMeta?.pagination.total : 0}
+        // The main outer wrapper with global background and padding
+        <div className="min-h-screen pb-32 pt-24 md:pt-32">
+
+            {/* The structural container keeping everything narrow and centered */}
+            <div className="max-w-4xl w-full mx-auto px-6 md:px-12">
+                <PageTitle
+                    title={skillName && skillName}
+                    count={totalPostsOfSkill ? totalPostsOfSkill : null}
+                    skillIconName={skillName}
                 />
-                <div className="">
-                    {projectsOfSkill.length === 0 ? (
-                        <div className="text-center py-12">
-                            <p className="text-gray-500 text-xl">No projects found</p>
-                        </div>
-                    ) : (
-                        <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                            {projectsOfSkill.map((projectsOfSkill) => (
-                                <ProjectCard key={projectsOfSkill.documentId} {...projectsOfSkill} />
-                            ))}
-                        </div>
-                    )}
+
+                <div className="mb-5 w-full flex flex-col">
+                    <SectionTitle
+                        title="PROJECTS"
+                        count={projectsOfSkillMeta ? projectsOfSkillMeta?.pagination.total : 0}
+                    />
+                    <div className="">
+                        {projectsOfSkill.length === 0 ? (
+                            <div className="text-[#404040] text-center text-sm mt-10">
+                                <p className="text-sm">No projects found</p>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                                {projectsOfSkill.map((projectsOfSkill) => (
+                                    <ProjectCard key={projectsOfSkill.documentId} {...projectsOfSkill} />
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
-            </div>
-            <div className="mt-8 mb-5 w-full flex flex-col">
-                <SectionTitle title="BLOGS" count={blogsOfSkillMeta ? blogsOfSkillMeta?.pagination.total : 0} />
-                <div className="">
-                    {blogsOfSkill.length === 0 ? (
-                        <div className="text-center py-12">
-                            <p className="text-gray-500 text-xl">No Blogs found</p>
-                        </div>
-                    ) : (
-                        <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                            {blogsOfSkill.map((blogsOfSkill) => (
-                                <BlogCard key={blogsOfSkill.documentId} {...blogsOfSkill} />
-                            ))}
-                        </div>
-                    )}
+                <div className="mt-12 mb-5 w-full flex flex-col">
+                    <SectionTitle title="BLOGS" count={blogsOfSkillMeta ? blogsOfSkillMeta?.pagination.total : 0} />
+                    <div className="">
+                        {blogsOfSkill.length === 0 ? (
+                            <div className="text-[#404040] text-center text-sm mt-10">
+                                <p className="text-sm">No Blogs found</p>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                                {blogsOfSkill.map((blogsOfSkill) => (
+                                    <BlogCard key={blogsOfSkill.documentId} {...blogsOfSkill} />
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

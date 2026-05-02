@@ -1,11 +1,9 @@
 import { Outlet } from "react-router-dom";
-import NavBar from "../components/NavBar";
 
 function MainLayout() {
     return (
-        <div>
-            <NavBar />
-            <main>
+        <div className="min-h-screen bg-[#1a1a1a] text-gray-200 flex flex-col selection:bg-orange-500 selection:text-white pb-24">
+            <main className="flex-grow w-full">
                 <Outlet />
             </main>
         </div>

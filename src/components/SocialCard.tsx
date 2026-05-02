@@ -3,15 +3,28 @@ import { IconType } from "react-icons";
 interface SocialCard {
     socialLink: string;
     SocialIcon: IconType;
+    label: string;
 }
 
 function SocialCard(props: SocialCard) {
     return (
         <a
             href={props.socialLink}
-            className="w-full bg-white flex items-center justify-center sm:px-2 sm:py-1 md:px-6 md:py-3 lg:px-8 lg:py-4 2xl:px-10 2xl:py-5 hover:bg-gray-200 hover:transition-colors"
+            target="_blank"
+            rel="noreferrer"
+            title={props.label} // Native tooltip for accessibility
+            className="group block"
         >
-            <props.SocialIcon  size={"35"} color="black"/>
+            {/* 
+                Wireframe button styling matching the Skills section:
+                Dark border, gray icon -> Inverts to white bg, black icon on hover
+            */}
+            <div className="p-1 md:p-1 flex items-center justify-center transition-all duration-200 text-[#c4c4c4] group-hover:text-white">
+                <props.SocialIcon 
+                    size={24} 
+                    className="transition-transform duration-200" 
+                />
+            </div>
         </a>
     );
 }

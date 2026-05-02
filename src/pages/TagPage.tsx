@@ -87,24 +87,27 @@ function TagPage() {
     }
 
     return (
-        <div className="h-[100vh] flex flex-col sm:py-6 sm:px-[2rem] md:px-[5rem] md:py-0 lg:px-[8rem] xl:px-[12rem] 2xl:px-[18rem]">
-            <PageTitle title={tagName} count={blogsOfTagMeta ? blogsOfTagMeta?.pagination.total : 0} skillIconName={null}/>
-            <br />
-            <br />
-            <div>
-                <SectionTitle title="BLOGS" count={blogsOfTagMeta ? blogsOfTagMeta?.pagination.total : 0} />
-                <div className="mt-5">
-                    {blogsOfTag.length === 0 ? (
-                        <div className="text-center py-12">
-                            <p className="text-gray-500 text-xl">No Blogs found</p>
-                        </div>
-                    ) : (
-                        <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                            {blogsOfTag.map((blogOfTag) => (
-                                <BlogCard key={blogOfTag.documentId} {...blogOfTag} />
-                            ))}
-                        </div>
-                    )}
+        // The main outer wrapper with global background and padding
+        <div className="min-h-screen pb-32 pt-24 md:pt-32">
+
+            {/* The structural container keeping everything narrow and centered */}
+            <div className="max-w-4xl w-full mx-auto px-6 md:px-12">
+                <PageTitle title={tagName} count={blogsOfTagMeta ? blogsOfTagMeta?.pagination.total : 0} skillIconName={null} />
+                <div>
+                    <SectionTitle title="BLOGS" count={blogsOfTagMeta ? blogsOfTagMeta?.pagination.total : 0} />
+                    <div className="mt-5">
+                        {blogsOfTag.length === 0 ? (
+                            <div className="text-[#404040] text-center text-sm mt-10">
+                                <p className="text-sm">No Blogs found</p>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                                {blogsOfTag.map((blogOfTag) => (
+                                    <BlogCard key={blogOfTag.documentId} {...blogOfTag} />
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

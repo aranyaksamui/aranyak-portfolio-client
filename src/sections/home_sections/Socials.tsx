@@ -4,14 +4,19 @@ import SocialCard from "../../components/SocialCard";
 
 function Socials() {
     return (
-        <section className="h-screen flex items-center justify-center text-white sm:h-max sm:my-24 sm:flex-col lg:h-screen">
-            <div className="flex items-center justify-evenly sm:gap-2 md:gap-6">
-                <SocialCard socialLink="mailto:aranyaksamui29@gmail.com" SocialIcon={AiFillMail} />
-                <SocialCard socialLink="https://www.linkedin.com/in/aranyak-samui-15002b229/" SocialIcon={AiFillLinkedin} />
-                <SocialCard socialLink="https://github.com/aranyaksamui" SocialIcon={AiFillGithub} />
-                <SocialCard socialLink="https://instagram.com/typez3r0" SocialIcon={AiOutlineInstagram} />
-                <SocialCard socialLink="https://www.reddit.com/user/TypeZ3R0/" SocialIcon={AiFillRedditCircle} />
+<section id="socials" className="max-w-4xl w-full mx-auto px-6 md:px-12 flex flex-col">
+            {/* 
+               flex-wrap ensures they stack neatly on tiny mobile screens. 
+               mt-8 matches the spacing of the other sections.
+            */}
+            <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-4 md:gap-6">
+                <SocialCard socialLink="mailto:aranyaksamui29@email.com" SocialIcon={AiFillMail} label="Email" />
+                <SocialCard socialLink="https://www.linkedin.com/in/aranyaksamui" SocialIcon={AiFillLinkedin} label="LinkedIn" />
+                <SocialCard socialLink="https://github.com/aranyaksamui" SocialIcon={AiFillGithub} label="GitHub" />
+                <SocialCard socialLink="https://www.instagram.com/nawgmented" SocialIcon={AiOutlineInstagram} label="Instagram" />
+                <SocialCard socialLink="https://www.reddit.com/user/TypeZ3R0" SocialIcon={AiFillRedditCircle} label="Reddit" />
             </div>
+            
         </section>
     );
 }

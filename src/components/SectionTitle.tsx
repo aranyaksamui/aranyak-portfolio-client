@@ -1,8 +1,15 @@
 function SectionTitle(props: { title: string, count: number }) {
     return (
-        <div className="bg-white mb-6 flex justify-between items-center font-bold sm:w-4/6 sm:px-4 sm:py-2 lg:w-2/6">
-            <span className="text-black text-lg">{props.title.toUpperCase()}</span>
-            <span className="text-black text-lg">#{props.count}</span>
+        <div className="mb-8 md:mb-5">
+            <h2 className="text-xl md:text-lg font-bold tracking-tight text-white flex items-center">        
+                {/* Lowercasing the title makes it feel more like a terminal command */}
+                {">"} {props.title.toLowerCase()}: 
+                
+                {/* The count styled as a system output array length */}
+                <span className="text-[#fe8e0d] font-normal text-lg md:text-lg ml-3">
+                    [{props.count}]
+                </span>
+            </h2>
         </div>
     );
 }

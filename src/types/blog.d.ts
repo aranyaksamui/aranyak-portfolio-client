@@ -38,7 +38,7 @@ export interface SingleBlog {
     SubTitle: string;
     createdAt: string;
     Body: string;
-    CoverImage: Media;
+    CoverImage: Media | null;
     skills: Skill[];
     tags: Tag[];
 }

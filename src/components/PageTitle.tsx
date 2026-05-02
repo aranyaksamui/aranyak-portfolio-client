@@ -1,4 +1,3 @@
-import { IoArrowBackSharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { fallbackIcon, getSkillIcon } from "../utils/SkillIcons";
 
@@ -6,24 +5,35 @@ function PageTitle(props: { title: string | null; count: number | null; skillIco
     const SkillIcon = getSkillIcon(props.skillIconName ? props.skillIconName : "") || fallbackIcon;
 
     return (
-        <div className="sm:mt-20 lg:mt-10 2xl:mt-16 flex sm:gap-2 md:gap-5 items-center justify-between">
-            <div className="h-full">
-                <Link to={"/"}>
-                    <div className="h-full bg-[#1f1f1f] flex justify-between items-center font-black sm:px-2 md:px-5 2xl:px-8">
-                        <IoArrowBackSharp size={"30"} color="white" />
-                    </div>
+       <div className="mb-10 md:mb-12 flex flex-col sm:flex-row sm:items-end justify-between border-b border-[#404040] pb-6 gap-4">
+            
+            <div className="flex flex-col gap-5">
+                {/* Back Button (Wireframe Terminal Style) */}
+                <Link
+                    to={"/"}
+                    className="inline-flex w-max text-xs md:text-sm text-[#404040] hover:text-[#fe8e0d] transition-colors uppercase tracking-widest"
+                >
+                    {"<"} RETURN
                 </Link>
+
+                {/* Terminal Header */}
+                <h1 className="text-xl md:text-2xl font-bold tracking-tight text-white flex items-center uppercase">
+                    {">"} {props.title}
+                    
+                    {/* Render the icon if viewing a specific skill's projects */}
+                    {props.skillIconName && (
+                        <SkillIcon size={"28"} className="ml-4 text-[#fe8e0d]" />
+                    )}
+                </h1>
             </div>
-            <div className="w-full h-full bg-[#1f1f1f] flex justify-between items-center font-black sm:px-2 sm:py-2 md:px-5 lg:px-8 2xl:px-8 2xl:py-3">
-                <span className="text-white sm:text-lg md:text-2xl flex items-center">
-                    {props.skillIconName && <SkillIcon size={"30"} className="inline sm:mr-1 md:mr-3" />}
-                    {props.title && props.title.toUpperCase()}
-                </span>
-                <span className="text-white sm:text-lg md:text-2xl">{props.count && `#${props.count}`}</span>
-            </div>
-            {/* <div className="h-full bg-[#1f1f1f] flex justify-between items-center font-black sm:px-2 md:px-5 2xl:px-8">
-                <IoSearchSharp size={"30"} color="white" />
-            </div> */}
+
+            {/* Count Array Item */}
+            {props.count !== null && (
+                <div className="text-[#fe8e0d] text-lg md:text-xl">
+                    [{props.count}]
+                </div>
+            )}
+            
         </div>
     );
 }

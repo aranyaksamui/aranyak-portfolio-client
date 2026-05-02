@@ -36,41 +36,47 @@ function Skills() {
 
     if (loading) {
         return (
-            <div className="h-64 flex justify-center items-center text-white">
-                <div className="">loading...</div>
+            // Matches the wrapper alignment so the layout doesn't jump when it finishes loading
+            <div className="max-w-4xl w-full mx-auto px-6 md:px-12 font-mono text-gray-400">
+                {">"} loading skills...
             </div>
         );
     }
 
     if (error) {
         return (
-            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded max-w-md mx-auto mt-8">
-                <p>Error loading projects: {error}</p>
+            // Brutalist error state: sharp borders, terminal text, no rounded corners
+            <div className="max-w-4xl w-full mx-auto px-6 md:px-12">
+                <div className="border border-red-500 text-red-500 p-4 font-mono text-sm">
+                    {">"} Error loading skills: {error}
+                </div>
             </div>
         );
     }
 
     return (
-        <section id="#skills" className="text-black h-screen sm:h-max sm:my-24 flex sm:flex-col lg:h-screen">
+        <section id="skills" className="max-w-4xl w-full mx-auto px-6 md:px-12 flex flex-col">
             <SectionTitle title="SKILLS" count={skillsMeta ? skillsMeta.pagination.total : 0} />
-            <div className="mt-10 flex sm:flex-col lg:flex-row lg:justify-between">
-                <div className="grid sm:grid-cols-3 sm:gap-3 font-bold lg:grid-rows-3 lg:grid-cols-none lg:w-[15rem] lg:gap-6">
-                    <div className="bg-orange-500 h-32 relative lg:h-24 text-white sm:text-sm md:text-base">
-                        <span className="sm:p-1 md:p-2 absolute right-0 bottom-0">DEVELOPER</span>
-                    </div>
-                    <div className="bg-orange-400 h-32 relative lg:h-24 text-white sm:text-sm md:text-base">
-                        <span className="sm:p-1 md:p-2 absolute right-0 bottom-0">ARTIST</span>
-                    </div>
-                    <div className="bg-orange-300 h-32 relative lg:h-24 text-white sm:text-sm md:text-base">
-                        <span className="sm:p-1 md:p-2 absolute right-0 bottom-0">CREATOR</span>
-                    </div>
+            
+            <div className="mt-3 flex flex-col md:flex-row gap-8 md:gap-10 items-start">
+                
+                {/* Left Side: Minimal Typography instead of bulky blocks */}
+                <div className="w-full md:w-48 flex flex-row md:flex-col flex-wrap gap-4 md:gap-3 font-normal text-sm tracking-widest flex-shrink-0">
+                    <span className="text-[#646464]">DEVELOPER</span>
+                    <span className="text-[#646464]">ARTIST</span>
+                    <span className="text-[#646464]">CREATOR</span>
                 </div>
-                <div className="grid sm:mt-8 sm:grid-cols-1 md:grid-cols-3 sm:gap-3 lg:w-4/6 lg:mt-0 lg:grid-cols-3 xl:grid-cols-4 lg:h-14 2xl:h-16 text-white">
-                    {skills
-                        ? skills.map((skill) => {
-                              return <SkillsInPage {...skill} />;
-                          })
-                        : error}
+
+                {/* Right Side: The Skills Grid */}
+                {/* I kept grid-cols-2 sm:grid-cols-3 to keep your white buttons perfectly aligned */}
+                <div className="w-full grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 xl:grid-cols-9 gap-3 md:gap-4">
+                    {skills && skills.length > 0 ? (
+                        skills.map((skill) => (
+                            <SkillsInPage key={skill.id} {...skill} iconSize={28} />
+                        ))
+                    ) : (
+                        <span className="text-gray-400 font-mono text-sm col-span-full">{">"} no skills found.</span>
+                    )}
                 </div>
             </div>
         </section>

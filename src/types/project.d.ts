@@ -7,7 +7,7 @@ export interface Project {
     Title: string;
     SubTitle: string | null;
     createdAt: string;
-    Media: Media[];
+    Media: Media[] | null;
     skills: Skill[];
 }
 
@@ -37,7 +37,7 @@ export interface SingleProject {
     SubTitle: string;
     createdAt: string;
     Description: string;
-    Media: Media[];
+    Media: Media[] | null;
     skills: Skill[];
 }
 

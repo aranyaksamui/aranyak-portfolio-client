@@ -29,13 +29,13 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, context })
                 components={{
                     // Markdown
                     // Headers
-                    h1: ({ node, ...props }) => <h1 className="text-3xl font-bold mb-4 mt-8" {...props} />,
-                    h2: ({ node, ...props }) => <h2 className="text-2xl font-bold mb-3 mt-6" {...props} />,
-                    h3: ({ node, ...props }) => <h3 className="text-xl font-bold mb-2 mt-5" {...props} />,
+                    h1: ({ node, ...props }) => <h1 className="text-2xl font-bold mb-4 mt-8" {...props} />,
+                    h2: ({ node, ...props }) => <h2 className="text-xl font-bold mb-3 mt-6" {...props} />,
+                    h3: ({ node, ...props }) => <h3 className="text-lg font-bold mb-2 mt-5" {...props} />,
 
                     // Paragraphs
                     p: ({ node, children, ...props }) => (
-                        <div className={`${bodyText} mb-4 leading-relaxed font-light`} {...props}>
+                        <div className={`${bodyText} mb-4 text-md leading-relaxed font-light`} {...props}>
                             {children}
                         </div>
                     ),
