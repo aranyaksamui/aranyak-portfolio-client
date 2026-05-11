@@ -27,8 +27,6 @@ function ProfilePicture() {
                 {/* 3. The Image Container */}
                 {/* flex-1 makes this box fill the rest of the white window automatically */}
                 <div className="flex-1 w-full overflow-hidden flex items-center justify-center bg-[#0a0a0a]">
-                    
-                    {/* CRITICAL FIX: 'object-cover' ensures the image NEVER squishes, no matter the container size! */}
                     <img 
                         src={pfp} 
                         alt="My Portrait" 

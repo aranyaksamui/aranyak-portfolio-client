@@ -46,7 +46,7 @@ function Blogs() {
                 )}
             </div>
 
-            {homePageBlogs && <Link
+            {homePageBlogs && homePageBlogs.length > 0 && <Link
                 to={"/blogs"}
                 className="mt-6 group block w-full md:max-w-xs mono text-xs text-[#646464] hover:text-gray-200 hover:border-white transition-all duration-200"
             >

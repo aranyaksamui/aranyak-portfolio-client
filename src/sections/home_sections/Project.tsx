@@ -48,7 +48,7 @@ function Project() {
                 )}
             </div>
 
-            {homePageProjects && <Link
+            {homePageProjects && homePageProjects.length > 0 && <Link
                 to={"/projects"}
                 className="mt-6 group block w-full md:max-w-xs mono text-xs text-[#646464] hover:text-gray-200 hover:border-white transition-all duration-200"
             >
