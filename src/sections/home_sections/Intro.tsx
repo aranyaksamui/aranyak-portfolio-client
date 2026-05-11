@@ -45,7 +45,7 @@ function Intro() {
                 </div>
 
                 {/* Profile Picture */}
-                <div className="w-48 h-48 md:w-48 md:h-48 lg:w-56 lg:h-80 flex-shrink-0 relative">
+                <div className="w-32 h-32 md:w-48 md:h-48 lg:w-56 lg:h-80 flex-shrink-0 relative">
                     <ProfilePicture />
                 </div>
 
