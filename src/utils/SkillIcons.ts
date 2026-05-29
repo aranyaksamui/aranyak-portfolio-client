@@ -13,6 +13,7 @@ import {
     SiFirebase,
     SiMysql,
     SiSupabase,
+    SiPytorch,
 
 } from "react-icons/si";
 import { TbBrandCSharp } from "react-icons/tb";
@@ -39,6 +40,7 @@ const skillIconMap: Record<string, IconType> = {
     firebase: SiFirebase,
     mysql: SiMysql,
     supabase: SiSupabase,
+    pytorch: SiPytorch
     // premierpro: SiAdobepremierepro,
     // aftereffects: SiAdobeaftereffects,
     // lightroom: SiAdobelightroom,
