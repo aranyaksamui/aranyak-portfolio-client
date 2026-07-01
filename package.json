@@ -11,6 +11,7 @@
     },
     "dependencies": {
         "@fontsource/readex-pro": "^5.2.11",
+        "@vercel/analytics": "^2.0.1",
         "axios": "^1.15.0",
         "framer-motion": "^12.38.0",
         "react": "^19.2.5",

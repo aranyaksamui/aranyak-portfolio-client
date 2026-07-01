@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 
 import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
@@ -66,7 +67,10 @@ function Root() {
     return (
         <BlogProvider>
             <ProjectProvider>
+                {/* React Router dom */}
                 <RouterProvider router={router} />
+                {/* Vercel Analytics */}
+                <Analytics />
             </ProjectProvider>
         </BlogProvider>
     );
